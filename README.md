@@ -2,6 +2,12 @@
 
 WEB+DB PRESS vol.97のReactで作るシングルページアプリケーション入門の練習用コード
 
+## 実行環境
+- node v7.6.0
+- npm 4.1.2
+
+
+
 # Reactまとめ
 
 今回使うのはBabelとWebpack
@@ -15,7 +21,15 @@ webpackはモージュールバンドラというツールで、JavaScriptの依
 
 Babelの設定は.babelrcに書く
 
+webpack-dev-serverを立ち上げたあとは以下にアクセスできる。
+
+- http://localhost:8080/
+
+ただ、サーバの設定を入れたら、output.pathが'./public'だと動作しなくなったため、ドットを外した。
+
+
 ## コマンド一覧
+
 ```
 # 事前準備
 mkdir spa-note
@@ -31,5 +45,7 @@ npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-
 ./node_modules/.bin/webpack
 
 npm install --save-dev webpack-dev-server
+./node_modules/.bin/webpack-dev-server
+
 
 ```
