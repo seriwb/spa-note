@@ -1,4 +1,3 @@
-import webpack from 'webpack'
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -6,31 +5,34 @@ module.exports = {
     js: './src/main.js',
     css: './src/main.css',
   },
-  output: { path: '/public', filename: 'bundle.js' },
+  output: { path: __dirname + '/public', filename: 'bundle.js' },
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+        // query: {
+        //     presets: ['es2015', 'react']
+        // }
       },
+    // ],
+    // rules: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'css-loader!postcss-loader'
-        ),
+        loader: ExtractTextPlugin.extract({
+          use: "css-loader!postcss-loader",
+        })
+        // loader: [
+        //   'css-loader?importLoaders=1',
+        //   'postcss-loader',
+        // ],
       },
-    ]
+    ],
   },
   plugins: [
-    new ExtractTextPlugin('bundle.css'),
-    new webpack.LoaderOptionsPlugin({
-      // test: /\.xxx$/, // may apply this only for some modules
-      options: {
-        postcss: [
-          require('postcss-easy-import')({ glob: true }),
-        ]
-      }
+    new ExtractTextPlugin({
+      filename: 'bundle.css',
     }),
   ],
   devServer: {

@@ -26,6 +26,13 @@ webpack-dev-serverを立ち上げたあとは以下にアクセスできる。
 - http://localhost:8080/
 
 ただ、サーバの設定を入れたら、output.pathが'./public'だと動作しなくなったため、ドットを外した。
+  - https://github.com/webpack/webpack/issues/3660
+
+- -> その後、PostCSSの設定入れたら外した状態だとおかしくなったので戻した。
+  - -> まだおかしいので`path: __dirname + '/public'`の記述に変更した
+
+index.htmlは手で作成するより`html-webpack-plugin`プラグインとか使ったほうがいいっぽい
+
 
 
 ## CSSまとめ
@@ -43,6 +50,28 @@ Webpack2系と1系でPostCSS用の設定の書き方が違うらしい
 
 - https://github.com/postcss/postcss-loader
 
+### ERROR対応
+
+2系に合わせて書き直したあと、以下のエラーが出た。
+
+```
+ERROR in ./src/main.js
+Module parse failed: /Users/tsuchida-chikara/repositories/seriwb/spa-note/src/main.js Unexpected token (5:2)
+You may need an appropriate loader to handle this file type.
+| 
+| ReactDOM.render(
+|   <div>Hello SPA!</div>,
+|   document.getElementById('app')
+| );
+
+ERROR in chunk js [entry]
+bundle.js
+Conflict: Multiple assets emit to the same filename bundle.js
+```
+
+module.loadersにrules入れたらmain.jsのエラーが出てて、
+chunk jsの方は連続で同盟のファイルが自動生成されているからおかしくなっていた模様。
+これはExtractTextPlugin.extractをちゃんと使うようにしたら直った。
 
 
 # コマンド一覧
