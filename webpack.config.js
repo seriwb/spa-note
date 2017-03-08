@@ -7,26 +7,17 @@ module.exports = {
   },
   output: { path: __dirname + '/public', filename: 'bundle.js' },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        // query: {
-        //     presets: ['es2015', 'react']
-        // }
       },
-    // ],
-    // rules: [
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           use: "css-loader!postcss-loader",
         })
-        // loader: [
-        //   'css-loader?importLoaders=1',
-        //   'postcss-loader',
-        // ],
       },
     ],
   },

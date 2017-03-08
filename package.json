@@ -4,7 +4,8 @@
   "description": "WEB+DB PRESS vol.97のReactで作るシングルページアプリケーション入門の練習用コード",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node_modules/.bin/webpack",
+    "start": "node_modules/.bin/webpack-dev-server"
   },
   "keywords": [],
   "author": "",

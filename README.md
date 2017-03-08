@@ -10,7 +10,7 @@ WEB+DB PRESS vol.97のReactで作るシングルページアプリケーショ�
 
 # Reactまとめ
 
-今回使うのはBabelとWebpack
+今回使うのはBabelと[Webpack](https://webpack.js.org)
 
 webpackはモージュールバンドラというツールで、JavaScriptの依存関係解決＆1ファイル統合してくれる
 > webpackの同機能としてbrowserifyってのもある
@@ -70,7 +70,7 @@ Conflict: Multiple assets emit to the same filename bundle.js
 ```
 
 module.loadersにrules入れたらmain.jsのエラーが出てて、
-chunk jsの方は連続で同盟のファイルが自動生成されているからおかしくなっていた模様。
+chunk jsの方は連続で同名のファイルが自動生成されているからおかしくなっていた模様。
 これはExtractTextPlugin.extractをちゃんと使うようにしたら直った。
 
 
